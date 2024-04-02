@@ -7,6 +7,9 @@ from machine import Pin, ADC
 ssid = 'simplewifi'  # Network name
 password = '12345678'  # Wifi password
 
+ssid = 'SHAW-F06F'
+password = 'favor8521appear'
+
 # Initialize I2C if necessary
 
 def connect():
@@ -48,6 +51,7 @@ def open_socket(ip):
     connection = socket.socket()
     connection.bind(address)
     connection.listen(1)
+    print('listening on', address)
     return connection
 
 def webpage(reading):
@@ -106,9 +110,9 @@ try:
 
     # Start web server on core 0
     _thread.start_new_thread(serve_webpage, ())
-
+    detect_sensor()
     # Start sensor detection on core 1
-    _thread.start_new_thread(detect_sensor, ())
+#     _thread.start_new_thread(detect_sensor, ())
 
     while True:
         pass
